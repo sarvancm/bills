@@ -1,1 +1,1 @@
-web: gunicorn billing.wsgi --log-file -
+web: gunicorn sarvanfinance.wsgi --log-file -
