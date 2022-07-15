@@ -1,0 +1,564 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="{% static 'img/jebinlogo.png' %}" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+    </head>
+
+    <body>
+       
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'calculate' %}">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate %</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billing' %}">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Add Bill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billpayment' %}">
+                            <span class="icon">
+                                <i class="fas fa-cash-register"></i>
+                            </span>
+                            <span class="title"> Bill Payment</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'adddatabase' %}">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'notification' %}">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                        <span class="nav-link text-light" style="text-transform: uppercase;font-size: 1rem;">
+                            {% if user %}
+                          welcome,{{user.username}}
+                          {% endif %}</span>
+                        </li>
+                    </ul>
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+
+            </header>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="container">
+                <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert" style="text-transform: capitalize;">
+                    {{message}}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+            <div class="card cdedit">
+                
+                
+                
+                <hr>
+                <!-- Cards 1 -->
+                <div class="row">
+
+                    <div class="col-sm-4 edit">
+
+                        <div class="card text-center edit1">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-rupee-sign"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">TOTAL AMOUNT</div>
+                            <div class="numbers"><small>Rs. &nbsp;</small>{{totalamount}}</div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 edit">
+
+                        <div class="card text-center edit2">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-rupee-sign"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">AMOUNT COLLECTED</div>
+                            <div class="numbers"><small>Rs. &nbsp;</small>{{totalpaidamount}}</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit3">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-rupee-sign"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">DUE AMOUNT</div>
+                            <div class="numbers"><small>Rs. &nbsp;</small>{{unpaid}}</div>
+                        </div>
+                    </div>
+
+                </div><hr>
+
+                <!-- ----------------- Cards 2 ------------------- -->
+                <h3 class="text-center"> TODAY DETAILS </h3><hr>
+                <div class="row">
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit1">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">TOTAL BILL</div>
+                            <div class="numbers">{{daydue}}</div>
+                            <a href="#" class="card-link">
+                                <small class="float-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Today Dues</button>
+                                </small>
+                            <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">TOTAL BILL</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">User ID</th>
+                <th scope="col">bill No</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in dayduelist %}
+              <tr>                
+                <td>{{d.debtor.debtor.fullname}}</td>
+                <td>{{d.debtor.debtor.user_id}}</td>
+                <td>{{d.debtor.docno}}</td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+        </div>
+        {% comment %} <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> {% endcomment %}
+      </div>
+    </div>
+  </div></a>
+                
+                        </div>
+                    </div>
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit2">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">BILL COLLECTED</div>
+                            <div class="numbers">{{daypaidcount}}</div>
+                            <a href="#" class="card-link">
+                                <small class="float-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Today Dues</button>
+                                </small>
+                            <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle1">BILL COLLECTED</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">User ID</th>
+                <th scope="col">bill No</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in dayduepaid %}
+              <tr>                
+                <td>{{d.debtor.debtor.fullname}}</td>
+                <td>{{d.debtor.debtor.user_id}}</td>
+                <td>{{d.debtor.docno}}</td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+        </div>
+        {% comment %} <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> {% endcomment %}
+      </div>
+    </div>
+  </div></a>
+                
+                        </div>
+                    </div>
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit3">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">DUE BILL</div>
+                            <div class="numbers">{{dayunpaidcount}}</div>
+                            
+                                
+                               <a href="#" class="card-link">
+                                <small class="float-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter3">Today Dues</button>
+                                </small>
+                            <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">DUE BILL</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">User ID</th>
+                <th scope="col">bill No</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in daydueunpaid %}
+              <tr>                
+                <td>{{d.debtor.debtor.fullname}}</td>
+                <td>{{d.debtor.debtor.user_id}}</td>
+                <td>{{d.debtor.docno}}</td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div></a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+
+
+                <!-- ----------------- Cards 3 ------------------- -->
+
+                <h3 class="text-center"> MONTH DETAILS </h3>
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit1">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">TOTAL BILL</div>
+                            <div class="numbers">{{duemonthlistcount}}</div>
+                            <a href="#" class="card-link">
+                                <small class="float-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter4">Monthly Dues</button>
+                                </small>
+                            <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">TOTAL BILL</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">User ID</th>
+                <th scope="col">bill No</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+            
+
+
+              {% for d in duemonthlist %}
+              <tr>                
+                <td>{{d.debtor.debtor.fullname}}</td>
+                <td>{{d.debtor.debtor.user_id}}</td>
+                <td>{{d.debtor.docno}}</td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit2">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">BILL COLLECTED</div>
+                            <div class="numbers">{{duemonthpaidlistcount}}</div>
+                            <a href="#" class="card-link">
+                                <small class="float-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter5">Monthly Dues</button>
+                                </small>
+                            <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">BILL COLLECTED</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                
+                <th scope="col">Name</th>
+                <th scope="col">User ID</th>
+                <th scope="col">bill No</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in duemonthpaidlist %}
+                                            <tr>                
+                                              <td>{{d.debtor.debtor.fullname}}</td>
+                                              <td>{{d.debtor.debtor.user_id}}</td>
+                                              <td>{{d.debtor.docno}}</td>
+                                            </tr>
+                                            {% endfor %}
+             
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit3">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">DUE BILL</div>
+                            <div class="numbers">{{duemonthunpaidlistcount}}</div>
+                            <a href="#" class="card-link">
+                                <small class="float-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter6">Monthly Dues</button>
+                                </small>
+                                                          <!-- Modal -->
+                              <div class="modal fade" id="exampleModalCenter6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">DUE BILL</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <table class="table table-hover">
+                                          <thead>
+                                            <tr>
+                                              
+                                              <th scope="col">Name</th>
+                                              <th scope="col">User ID</th>
+                                              <th scope="col">bill No</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                              {% for d in duemonthunpaidlist %}
+                                            <tr>                
+                                              <td>{{d.debtor.debtor.fullname}}</td>
+                                              <td>{{d.debtor.debtor.user_id}}</td>
+                                              <td>{{d.debtor.docno}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                          
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+
+        <script>
+
+        //Menu Toggle
+
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function () {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        // add hovered class in selected item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered'));
+            this.classList.add('hovered')
+        }
+        list.forEach((item) =>
+            item.addEventListener('mouseover', activeLink));
+
+        setTimeout(function () {
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 2000)
+    </script>
+    
+    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</html>
+
+</html>

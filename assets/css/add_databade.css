@@ -1,0 +1,112 @@
+/* Forms */
+
+[type=text],
+[type=email],
+[type=url],
+select,
+textarea {
+  display: block;
+  padding: .5rem;
+  background: transparent;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #cdcdcd;
+  border-radius: 4px;
+  font-size: .95rem;
+}
+
+[type=text]:focus,
+[type=email]:focus,
+[type=url]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid #1E6BD6;
+} 
+
+
+
+label {
+  font-weight: 600;
+  font-size: .9rem;
+  display: block;
+  margin: .5rem 0;
+}
+
+/* Button */
+
+[type=submit] {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  margin: .25rem 0;
+  padding: .5rem 1rem;
+  border: 1px solid #1E6BD6;
+  border-radius: 18px;
+  background: #1E6BD6;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: .95rem;
+}
+
+
+.cardcrd {
+  padding-left: 25rem;
+  padding-right: 25rem;
+  padding-top: 10rem;
+}
+
+
+
+/* ------------ choose file ----------  */
+
+
+.file-drop-area{
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  /*width: 450px;*/
+  max-width: 100%;
+  padding:25px;
+  border: 1px dashed rgba(255,255,255,0.4);
+  border-radius: 3px;
+  transition: .2s;
+}
+
+.choose-file-button{
+
+  flex-shrink: 0;
+  background-color: rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  padding:8px 15px;
+  margin-right: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+
+}
+
+.file-message{
+
+  font-size: small;
+  font-weight: 300;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-input{
+  position: absolute;
+  left: 0;
+  top:0;
+  height: 100%;
+  widows: 100%;
+  cursor: pointer;
+  opacity: 0;
+
+}

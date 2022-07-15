@@ -1,0 +1,272 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="{% static 'img/jebinlogo.png' %}" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    </head>
+
+    <body>
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert"
+          style="text-transform: capitalize;margin-bottom:5px;">
+          *{{message}}
+        </div>
+        {% endfor %} {% endif %}
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'calculate' %}">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate EMI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billing' %}">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Billing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'adddatabase' %}">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'notification' %}">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Password</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+     
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    {% if user %}
+                   <h2>WELCOME,{{user.username}}</h2> 
+                    {% endif %}
+                    <div class="user">
+
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+
+            </header>
+
+            
+            
+            
+            <div class="card cdedit">
+                <br>
+                <br>
+                <h3 class="text-center"> TODAYs DETAILS </h3>
+                 <hr>
+                <!-- Cards 1 -->
+                <div class="row">
+                    
+                    <div class="col-sm-4 edit">
+                        
+                        <div class="card text-center edit1" >
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-rupee-sign"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">TOTAL AMOUNT</div>
+                            <div class="numbers"><small>Rs. &nbsp;</small>1,11,504</div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-4 edit">
+                        
+                        <div class="card text-center edit2">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-rupee-sign"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">AMOUNT COLLECTED</div>
+                            <div class="numbers"><small>Rs. &nbsp;</small>93,480</div>
+                        </div>
+                     </div>
+                    <div class= "col-sm-4 edit">
+                        <div class="card text-center edit3">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-rupee-sign"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">DUE AMOUNT</div>
+                            <div class="numbers"><small>Rs. &nbsp;</small>18,024</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ----------------- Cards 2 ------------------- -->
+
+                <div class="row">
+                    <div class= "col-sm-4 edit">
+                        <div class="card text-center edit1">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">TOTAL BILL</div>
+                            <div class="numbers">504</div>
+                            <a href="#" class="card-link"><small class="float-right">View Details</small></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 edit">
+                        <div class="card text-center edit2">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">BILL COLLECTED</div>
+                            <div class="numbers">480</div>
+                            <a href="#" class="card-link"><small class="float-right">View Details</small></a>
+                        </div>
+                    </div>
+                    <div class= "col-sm-4 edit">
+                        <div class="card text-center edit3">
+                            <div class="iconBox">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </div>
+                            <br>
+                            <div class="cardName">DUE BILL</div>
+                            <div class="numbers">24</div>
+                            <a href="#" class="card-link"><small class="float-right">View Details</small></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+        <script>
+
+        //Menu Toggle
+
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function () {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        // add hovered class in selected item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered'));
+            this.classList.add('hovered')
+        }
+        list.forEach((item) =>
+            item.addEventListener('mouseover', activeLink));
+
+        setTimeout(function () {
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 2000)
+    </script>
+    </body>
+
+</html>

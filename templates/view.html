@@ -1,0 +1,557 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="{% static 'img/jebinlogo.png' %}" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/view.css' %}">
+
+
+    </head>
+
+    <body>
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="far fa-2x fa-arrow-alt-circle-left"></i>
+                            </span>
+                            <span class="title">BACK</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                        <span class="nav-link text-light" style="text-transform: uppercase;font-size: 1rem;">
+                            {% if user %}
+                          welcome,{{user.username}}
+                          {% endif %}</span>
+                        </li>
+                    </ul>
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+
+            </header>
+
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);"> View User Details</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <form class="container" id="needs-validation"
+                            novalidate>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="userid">User ID : </label>
+                                           
+                                         <input type="text" class="form-control"
+                                            id="usreid"
+                                            placeholder="User ID" value={{document.debtor.user_id}} readonly> 
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="firstname"> Name : </label>
+                                            
+                                        <input type="text" class="form-control"
+                                            id="firstname"
+                                            placeholder="Name" value={{document.debtor.full_name}} readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="mobile">Mobile Number :
+                                        </label>
+                                         <input type="text" class="form-control"
+                                            id="mobile"
+                                            placeholder="Mobile Number"
+                                            value={{document.debtor.mobilenumber}} readonly> 
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-4 col-12">
+                                    <div class="form-group">
+
+                                        <label class="text-inverse"
+                                            for="address">Address : </label>
+                                            <textarea type="text" id="address"
+                                            cols="50" rows="7"
+                                                readonly>{{document.debtor.address}}</textarea>
+                                            <!-- <input type="text" class="form-control"
+                                            id="mobile"
+                                            placeholder="Mobile Number"
+                                            value={{document.debtor.address}} readonly>  -->
+                                            <!-- <textarea type="text" id="address" name='address'
+                                            cols="30" rows="10"
+                                            placeholder="address" required></textarea> -->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-10 col-10">
+                                    <div class="form-group">
+
+                                        <br>
+                                        <input type="file" name="input"
+                                            id="input"
+                                            style="display:none;">
+                                        <label for="input">
+                                            <img src="{{document.debtor.profile.url}}"
+                                                class="rounded
+                                                img-thumbnail"
+                                                id="image" width="180px"
+                                                style="cursor: pointer;">
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);">Amount Details</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="total">Total Amount (Rs) : </label>
+                                {% if document.totalamount %}
+                                    <input type="text" class="form-control"
+                                        id="total"
+                                        placeholder="Total Amount" value={{document.totalamount}}  readonly>
+                                        {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="firstname"> Name</label>
+                                    <input type="text" class="form-control"
+                                        id="firstname"
+                                        placeholder="Name" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="percentage">Percentage : </label>
+                                        {% if document.percentage %}
+                                    <input type="text" class="form-control"
+                                        id="percentage"
+                                        placeholder="%"  value={{document.percentage}}  readonly>
+                                        {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="given">Given Date : </label>
+                                        {% if document.created_at %}
+                                    <input type="" class="form-control"
+                                        id="given"
+                                         value = {{document.created_at|date:"d-m-Y H:m:s"}}  readonly>
+
+                                         {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="ttl"> Total :  </label>
+                                     <input type="text" class="form-control"
+                                        id="ttl"
+                                        placeholder="Balance + Fine" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="due">Next Due Date : </label>
+                                     <input type="text" class="form-control"
+                                        id="fine"
+                                        placeholder="Fine Amount" value = {{document.duedate|date:"d-m-Y H:m:s"}} readonly> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="paid">Last Paid Amount (Rs) : </label>
+                                    <input type="text" class="form-control"
+                                        id="paid"
+                                        placeholder="Paid Amount"  value={{document.intamount}}  readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="firstname"> Name</label>
+                                    <input type="text" class="form-control"
+                                        id="firstname"
+                                        placeholder="Name" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="balance">Balance Amount (Rs) :
+                                    </label>
+                                    <input type="text" class="form-control"
+                                        id="balance"
+                                        placeholder="Balance Amount" value={{document.balanceamount}}  readonly>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="pending">Pending Date : </label>
+                                    <input type="date" class="form-control"
+                                        id="pending"
+                                        placeholder="DD/MM/YYYY" value={{document.pendingdate}}  readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="reason">Reason : </label>
+                                    <input type="text" class="form-control"
+                                        id="reason"
+                                        placeholder="Reason" value={{document.reason}}  readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="fine">Fine Amount : </label>
+                                    <input type="text" class="form-control"
+                                        id="fine"
+                                        placeholder="Fine Amount" value={{document.fineamount}}  readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="pending">Pending Date</label>
+                                    <input type="date" class="form-control"
+                                        id="pending"
+                                        placeholder="DD/MM/YYYY" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="ttl"> Total : </label>
+                                    <input type="text" class="form-control"
+                                        id="ttl"
+                                        placeholder="Balance + Fine" value={{document.result}}  readonly> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="fine">Fine Amount</label>
+                                    <input type="text" class="form-control"
+                                        id="fine"
+                                        placeholder="Fine Amount" required> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <br>
+
+
+                        <!-- <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="paid">Debtor Pay Amount (Rs)</label>
+                                    <input type="text" class="form-control"
+                                        id="paid"
+                                        placeholder="Pay Amount" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="firstname"> Name</label>
+                                    <input type="text" class="form-control"
+                                        id="firstname"
+                                        placeholder="Name" required>
+                                </div> 
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="billdate">Amount payment Date</label>
+                                    <input type="date" class="form-control"
+                                        id="billdate"
+                                        placeholder="Bill Date" required>
+                                </div>
+                            </div>
+                        </div> -->
+                        <br>
+                        <br>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="container mt-3">
+                <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 d">
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <div class="docbody">
+
+                                <label for="collectdoc"
+                                    class="card-header">Documents
+                                    Collected</label>
+
+                                <div class="col-sm-12">
+                                    <br>{% if document.passbook %}
+                                    <!-- <input type="checkbox" id="doc1"
+                                        name="debtor" value="passbook" checked> -->
+                                    <label for="doc1"> Passbook </label><br>{% endif %}
+                                    {% if document.bond %}
+                                    <!-- <input type="checkbox" id="doc2"
+                                        name="debtor" value="bond" checked> -->
+                                    <label for="doc2"> Bond </label><br>{% endif %}
+                                    {% if document.deed %}
+                                    <!-- <input type="checkbox" id="doc3"
+                                        name="debtor" value="deed" checked> -->
+                                    <label for="doc3"> Deed </label><br>{% endif %}
+                                    {% if document.checkleaf %}
+                                    <!-- <input type="checkbox" id="doc4"
+                                        name="debtor" value="checkleaf" checked> -->
+                                    <label for="doc4"> Check Leaf : {{document.checkleafcount}} </label> <br>{% endif %}
+                                    <br>
+                                    <!-- <input type="number" id="doc4"
+                                        name="debtor" min="0" max="10"> -->
+                                    <hr>
+                                    {% if document.additionaldocuments %}
+                                    <!-- <input type="checkbox" id="doc5"
+                                        name="debtor"
+                                        value="additional"> -->
+                                    <label for="doc5"> Additional
+                                        Documents </label><br>
+                                         {% endif %}
+                                    <!-- <textarea type="text" id="doc5"
+                                        cols="20" rows="10"
+                                        placeholder="Additional
+                                        Documents" required></textarea> -->
+                                </div>
+                            </div>
+
+                        </div> <br>
+
+                        <div class="col-md-8">
+                            <div class="imgbody">
+                                <br>
+                                <div class="card mt-12">
+                                    <div class="card-header">
+                                        <h1 style="text-align: center; color:
+                                            rgb(80,
+                                            80, 80);"> View Documents</h1>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <!-- <div class="card"> -->
+                                    <div class="popup d-flex">
+                                        {% for  i in img %}
+                                        <img
+                                            src="{{i.file.url}}"><hr>
+                                            {% endfor %}
+                                        <!-- <img
+                                            src="img/images (2).jpg"><hr>
+                                        <img
+                                            src="img/images (3).jpg"><hr> -->
+                                    </div>
+                                    <div class="show">
+                                        <div class="overlay"></div>
+                                        <div class="img-show">
+                                            <span>X</span>
+                                            <img src="">
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+
+                                <!-- <div class="card-header"
+                                    style='padding:14px'>
+                                    <label for="files">Select files:
+                                    </label>
+                                    <input id="files" type="file"
+                                        multiple/>
+                                </div> -->
+                                <div style='padding:14px; margin:auto';>
+                                    <div
+                                        id="sortableImgThumbnailPreview">
+                                    </div>
+                                </div> <br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <br>
+            <!-- -------------------footer------------------ -->
+
+            <footer class="footer bottom_border">
+                <br>
+                <p class="text-center">Copyright @2022 | Designed by <a
+                        href="https://www.spanglesinfotech.in">SPANGLES
+                        INFOTECH</a></p>
+            </footer>
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+        </script>
+        <script>
+            $(function () {
+                "use strict";
+                
+                $(".popup img").click(function () {
+                    var $src = $(this).attr("src");
+                    $(".show").fadeIn();
+                    $(".img-show img").attr("src", $src);
+                });
+                
+                $("span, .overlay").click(function () {
+                    $(".show").fadeOut();
+                });
+                
+            });
+        </script>
+    </body>
+</html>

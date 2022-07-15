@@ -1,0 +1,431 @@
+{% extends "dash.html" %} {% load static %} {% block content %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="img/jebinlogo.png" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/css/bootstrap_4.2.css">
+
+
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/add_databade.css">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="home.html">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calculate.html">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate EMI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Billing.html">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Billing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Add_Database.html">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Search.html">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notification.html">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Password</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Sign.html">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+
+                    <div class="user">
+                        <img src="img/aryatwo10.jpg" alt="">
+                    </div>
+                </div>
+
+            </header> {% endcomment %}
+
+
+            <br>
+
+
+
+            <!-- -------------- add Database ----------  -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <header>
+                            <h3 class="text-center text-inverse">Add User Database</h3>
+                        </header>
+                        <hr>
+                        <form action="{% url 'adddatabase'%}" class="container" id="needs-validation" method='POST' enctype="multipart/form-data"
+                            >
+                            {% csrf_token %}
+                            {% if form.error %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="userid">User ID</label>
+                                        <input type="text" class="form-control" name='user_id' value="{{user_id}}"
+                                            id="usreid"
+                                            placeholder="User ID" required >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="firstname">Name</label>
+                                        <input type="text" class="form-control" name='name'
+                                            id="firstname"
+                                            placeholder="Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control"
+                                            id="mobile"
+                                            placeholder="Mobile Number" name='mobilenumber'
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="pan">PAN Card Number</label>
+                                        <input type="text" class="form-control" name='pancard'
+                                            id="pan"
+                                            placeholder="PAN Card Number"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="aadar">Aadar Card Number</label>
+                                        <input type="text" class="form-control"
+                                            id="aadar"
+                                            placeholder="Aadar Card Number" name='aadharnumber'
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="ration">Ration Card Number</label>
+                                        <input type="text" class="form-control"
+                                            id="ration"
+                                            placeholder="Ration Card Number" name='rationcard'
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="address">Address</label>
+                                        <textarea type="text" id="address" name='address'
+                                            cols="30" rows="10"
+                                            placeholder="address" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-8 col-12">
+                                    <div class="form-group">
+
+                                        <br>
+                                        <input type="file" name="input"
+                                            id="input"
+                                            style="display:none;">
+                                        <label for="input">
+                                            <img src="{% static 'img/img_avatar1.png' %}"
+                                                class="rounded
+                                                img-thumbnail"
+                                                id="output" width="180px" height="200px" 
+                                                style="cursor: pointer;">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label
+                                                        for="exampleFormControlFile1">Profile
+                                                        Image</label>
+                                                    <input type="file"
+                                                        class="form-control-file"
+                                                        id="exampleFormControlFile1" accept="image/*" onchange="loadFile(event)" name='profile'>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-sm-12 col-12
+                                                        text-center">
+                                                        <button class="btn btn-info" type="submit">Submit
+                                                            form</button>
+                                                    </div>
+                                            </form>
+                                        </label>
+                                        
+                                    {% comment %} </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="validationCustom03">City</label>
+                                        <input type="text" class="form-control"
+                                            id="validationCustom03"
+                                            placeholder="City" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid city.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="select-menu">Select any value</label>
+                                        <select class="custom-select d-block
+                                            form-control" id="image" required>
+                                            <option value="">Open this select
+                                                menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please selected any option.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="custom-file">
+                                            <input type="file" id="file"
+                                                class="form-control
+                                                custom-file-input" required>
+                                            <span class="custom-file-control"></span>
+                                            <div class="invalid-feedback">
+                                                Please selected any File.
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="custom-control
+                                            custom-checkbox">
+                                            <input type="checkbox"
+                                                class="custom-control-input"
+                                                required>
+                                            <span
+                                                class="custom-control-indicator"></span>
+                                            <span
+                                                class="custom-control-description">Check
+                                                this custom checkbox</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="custom-control
+                                            custom-radio">
+                                            <input id="radioStacked1"
+                                                name="radio-stacked"
+                                                type="radio"
+                                                class="custom-control-input"
+                                                required>
+                                            <span
+                                                class="custom-control-indicator"></span>
+                                            <span
+                                                class="custom-control-description">Toggle
+                                                this custom radio</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="custom-control
+                                            custom-radio">
+                                            <input id="radioStacked2"
+                                                name="radio-stacked"
+                                                type="radio"
+                                                class="custom-control-input"
+                                                required>
+                                            <span
+                                                class="custom-control-indicator"></span>
+                                            <span
+                                                class="custom-control-description">Or
+                                                toggle this other custom radio</span>
+                                        </label>
+                                    </div>
+                                </div> {% endcomment %}
+                            </div>
+                            <hr>
+                            {% comment %} <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-12
+                                    text-center">
+                                    <button class="btn btn-info" type="submit">Submit
+                                        form</button>
+                                </div>
+                            </div> {% endcomment %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+
+                
+            var loadFile = function(event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+            
+        </script>
+        <script type="text/javascript" src="{% static 'js/billing.js' %}"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
+{% endblock content %}

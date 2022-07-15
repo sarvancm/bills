@@ -1,0 +1,598 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="{% static 'img/jebinlogo.png' %}" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% comment %} <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/select.css' %}">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="anonymous"></script>
+
+
+
+    </head>
+
+    <body>
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'calculate' %}">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate %</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billing' %}">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Add Bill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billpayment' %}">
+                            <span class="icon">
+                                <i class="fas fa-cash-register"></i>
+                            </span>
+                            <span class="title"> Bill Payment</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'adddatabase' %}">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'notification' %}">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                        <span class="nav-link text-light" style="text-transform: uppercase;font-size: 1rem;">
+                            {% if user %}
+                          welcome,{{user.username}}
+                          {% endif %}</span>
+                        </li>
+                    </ul>
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+
+            </header>
+
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);"> Payment Details</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <form class="container" id="needs-validation" action="{% url 'billpayment'%}" method='POST'
+                            novalidate>
+
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="userid">User ID</label>
+                                            
+                                        <input type="text" class="form-control"
+                                            id="usreid" name = 'amount'
+                                            placeholder="User ID" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="firstname"> Name</label>
+                                            <select  class="form-control js-example-basic-single"  name="am" id="nameChange1"  required >
+                                                <option disabled selected value>Name </option>
+                                                {% for customers in debt %} 
+                                            
+                                                <option value="{{customers.id}}"> {{customers.full_name}}</option>
+                                                {% endfor  %}
+                                              </select> 
+                                        {% comment %} <input type="text" class="form-control"
+                                            id="firstname"
+                                            placeholder="Name" required> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control"
+                                            id="mobile"
+                                            placeholder="Mobile Number"
+                                            readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-4 col-12">
+                                    <div class="form-group">
+
+                                        <label class="text-inverse"
+                                            for="address">Address : </label>
+                                            <textarea type="text" id="address"
+                                            cols="50" rows="7"
+                                            placeholder="address" readonly></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-10 col-10">
+                                    <div class="form-group">
+
+                                        <br>
+                                        <input type="file" name="input"
+                                            id="input"
+                                            style="display:none;">
+                                        <label for="input">
+                                            <img src="{% static 'img/img_avatar1.png' %}"
+                                                class="rounded
+                                                img-thumbnail"
+                                                id="image" width="180px"
+                                                style="cursor: pointer;">
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% comment %} </form> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);">Amount Payment Details</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse" id="billchange"
+                                        for="total">Bill No : </label>
+                                        <select  class="form-control js-example-basic-single" id="myselect" name ='amount' required >
+                                            <option disabled selected value>Bill No </option>
+                                            
+                                        
+                                            <option> </option>
+                                           
+                                          </select> 
+                                    <!-- <input type="text" class="form-control"
+                                        id="total"
+                                        placeholder="Bill No" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="total">Given Total Amount (Rs) : </label>
+                                    <input type="text" class="form-control"
+                                        id="total"
+                                        placeholder="Total Amount" readonly>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="percentage">Percentage : </label>
+                                    <input type="text" class="form-control"
+                                        id="percentage"
+                                        placeholder="%" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="paid">Given Date :</label>
+                                    <input type="text" class="form-control"
+                                        id="paid" 
+                                        placeholder="Given Date" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <!-- <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="firstname"> Paid Amount (Rs) :</label>
+                                    <input type="text" class="form-control"
+                                        id="firstname"
+                                        placeholder="Name" required>
+                                </div> -->
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="balance">Balance Amount (Rs) :
+                                    </label>
+                                    <input type="text" class="form-control"
+                                        id="balance" name= 'balanceamount'
+                                        placeholder="Balance Amount" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <br> <hr><br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="paid">Debtor Pay Amount (Rs)</label>
+                                    <input type="numbers" class="form-control"
+                                        id="paid" name="intrestamount" onkeyup="result.value=parseInt(intrestamount.value);"
+                                        placeholder="Pay Amount" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <center>
+                                        <input type="checkbox" id="vehicle1" name="pay" value="0">
+                                            <label for="vehicle1"> Pay Given Amount</label><br>
+                                        </center>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="billdate">Amount payment Date</label>
+                                    <input type="date" class="form-control"
+                                        id="billdate" name= 'duedate'
+                                        placeholder="Bill Date" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><hr>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="pending">Pending Date</label>
+                                    <input type="date" class="form-control"
+                                        id="pending" name= 'pendingdate'
+                                        placeholder="DD/MM/YYYY" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="reason">Reason</label>
+                                    <input type="text" class="form-control"
+                                        id="reason" name= 'reason'
+                                        placeholder="Reason" required>
+                                        
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="fine">Fine Amount</label>
+                                    <input type="numbers" class="form-control"
+                                        id="fine" name="fineamount" value="0"
+                                        placeholder="Fine Amount"  onkeyup="result.value=parseInt(intrestamount.value) + parseInt(fineamount.value);" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="pending">Pending Date</label>
+                                    <input type="date" class="form-control"
+                                        id="pending"
+                                        placeholder="DD/MM/YYYY" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                   
+                                    <label class="text-inverse"
+                                        for="ttl"> Total : </label>
+                                    <input type="numbers" class="form-control"
+                                         name="result"
+                                        placeholder="Balance + Fine" required readonly>
+                                        <input type="checkbox" id="vehicle1" name="paid" value="paid" style="visibility:hidden;" checked >
+                                            
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="fine">Fine Amount</label>
+                                    <input type="text" class="form-control"
+                                        id="fine"
+                                        placeholder="Fine Amount" required> -->
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row text-center">
+                            <div class="col-lg-12 col-sm-12 col-12">
+                                <button class="btn btn-info" type="submit">
+                                    ADD </button>
+                            </div>
+                        </div>
+
+                    </form>
+                        <br>
+
+
+                        <!-- <br>
+                        <hr>
+                        <br> -->
+
+
+                        
+
+                        <!-- <div class="row text-center">
+                            <div class="col-lg-12 col-sm-12 col-12">
+                                <hr style="width:100%">
+                                <button class="btn btn-info" type="submit">
+                                    Pay </button>
+                                <button class="btn btn-Success" type="submit">
+                                    G - Pay </button>
+                            </div>
+                        </div> -->
+                        <!-- <br>
+                        <br> -->
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <br>
+            <!-- -------------------footer------------------ -->
+
+            <footer class="footer bottom_border">
+                <br>
+                <p class="text-center">Copyright @2022 | Designed by <a
+                        href="https://www.spanglesinfotech.in">SPANGLES
+                        INFOTECH</a></p>
+            </footer>
+
+        </div>
+
+
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+
+            $(document).ready(function() {
+    
+                $('.js-example-basic-single').select2();
+                
+            });
+
+
+            $('#nameChange1').change(function(){
+                data1 = $(this).val();
+                //data2 = $(this).find(':selected').data("name");
+                
+                $.ajax({
+                 type: 'POST',
+                 url: "{% url 'billpaymentselect' %}",
+                 dataType:'json',
+                 data: {'name': data1,
+                 'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),},
+                 success: function (data) {
+                     console.log(data.user_id)
+                     //
+                     dd = data.user_id;
+                     dd1 = data.mobilenumber;
+                     address = data.address;
+                     image = data.pic;
+                     options = data.bills
+                     
+                     
+                     $('#image').attr('src','http://localhost:8000'+image);
+                     $('#usreid').val(dd);
+                     $('#address').val(address);
+                     $('#mobile').val(dd1);
+                    let opt = ' <option disabled selected value>Bill No </option>';
+                     $.each(options, function(key, value) {   
+                     
+                        opt += '<option value="'+key+'">' + value + '</option>'; 
+                   })
+                   let test_option = document.getElementById('myselect')
+                   test_option.innerHTML = opt;
+                   
+                   
+                   ;
+
+
+
+
+
+
+
+
+
+                     
+                     $('select#nameChange option').filter(":selected").val(dd1);
+                     $('#select2-nameChange-container').css('color','red');
+                     $('#nameChange').filter(':selected').val(dd1);
+                     $('#nameChange').css('color','red');
+
+
+    
+                    
+                 },
+                 error: function (response) {
+                     alert('bad');
+                 }
+             });
+         });
+
+
+         $('#myselect').change(function(){
+            data1 = $(this).val();
+            //data2 = $(this).find(':selected').data("name");
+            
+            $.ajax({
+             type: 'POST',
+             url: "{% url 'billselect' %}",
+             dataType:'json',
+             data: {'id': data1,
+             'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),},
+             success: function (data) {
+                 console.log(data.user_id);
+                 //
+                 dd = data.totalamount;
+                 dd1 = data.percentage;
+                 dd2 = data.date;
+                 dd3 = data.balance;
+                 
+                 $('#total').val(dd);
+                 $('#percentage').val(dd1);
+                 $('#paid').val(dd2);
+                 $('#balance').val(dd3);
+        
+
+                
+             },
+             error: function (response) {
+                 alert('bad');
+             }
+         });
+     });
+    
+    
+        </script>
+        <script src="{% static 'js/select.js' %}"></script>
+
+        {% comment %} <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> {% endcomment %}
+
+    </body>
+</html>

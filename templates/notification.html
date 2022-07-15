@@ -1,0 +1,361 @@
+{% extends "dash.html" %} {% load static %} {% block content %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="img/jebinlogo.png" type="image/x-icon">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="home.html">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calculate.html">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate EMI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Billing.html">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Billing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Add_Database.html">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Search.html">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notification.html">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Password</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Sign.html">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+
+                    <div class="user">
+                        <img src="img/aryatwo10.jpg" alt="">
+                    </div>
+                </div>
+
+            </header> {% endcomment %}
+            <br>
+            <br>
+            <div class="container-fluid px-5">
+                <div class="details">
+
+                    <!-- New Customers -->
+                    <div class="recentCustomers">
+                        <div class="card-header">
+                            <h1 style="text-align: center; color: rgb(80,
+                                80, 80);">Recent Customers</h1>
+                        </div>
+
+           
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Profile</td>
+                                <td>Name</td>
+                                <td>Given Amount</td>
+                                <td>Percentage</td>
+                                <td>Balance Amount</td>
+                                <td>Next Due Date</td>
+                                <td>Billno</td>
+                                <td>View</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in post %}
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="{{p.debtor.profile.url}}" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>{{p.debtor.full_name}}<br><span>{{p.debtor.place}}</span></h4>
+                                </td>
+                                
+                                
+                                
+                                <td>{{p.totalamount}}</td>
+                                <td>{{p.percentage}}</td>
+                                <td>{{p.balanceamount}}</td>
+                                <td>{{p.duedate|date:"d-m-Y"}}</td>
+                                
+                                <td><span class="status delivered">{{p.docno}}</span></td>
+                                <td>
+                                    <div class="row">
+                                        <ul class="list-inline m-0 d-flex">
+                                            
+                                            <li class="list-inline-item">
+                                                <a href="{% url 'view' p.id %}"><button
+                                                    class="btn btn-primary
+                                                    btn-sm rounded-0"
+                                                    type="button"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="View">
+                                                    <i class="fa fa-eye"></i>
+                                                </button></a>
+                                            </li>
+                                           
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% comment %} <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Window Coolers</td>
+                                <td>$110</td>
+                                <td>11/04/2022</td>
+                                <td>Due</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Speakers</td>
+                                <td>$620</td>
+                                <td>11/04/2022</td>
+                                <td>Paid</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Hp Laptops</td>
+                                <td>$110</td>
+                                <td>11/04/2022</td>
+                                <td>Due</td>
+                                <td><span class="status inprogress">Inprogress</span></td>
+                            </tr>
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Star Refrigerator</td>
+                                <td>$1200</td>
+                                <td>11/04/2022</td>
+                                <td>Paid</td>
+                                <td><span class="status delivered">Delivered</span></td>
+                            </tr>
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Window Coolers</td>
+                                <td>$110</td>
+                                <td>11/04/2022</td>
+                                <td>Due</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Speakers</td>
+                                <td>$620</td>
+                                <td>11/04/2022</td>
+                                <td>Paid</td>
+                                <td><span class="status return">Return</span></td>
+                            </tr>
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Hp Laptops</td>
+                                <td>$110</td>
+                                <td>11/04/2022</td>
+                                <td>Due</td>
+                                <td><span class="status inprogress">Inprogress</span></td>
+                            </tr>
+
+                            <tr>
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="img/aryatwo10.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4>David <br><span>Italy</span></h4>
+                                </td>
+                                <td>Star Refrigerator</td>
+                                <td>$1200</td>
+                                <td>11/04/2022</td>
+                                <td>Paid</td>
+                                <td><span class="status delivered">Delivered</span></td>
+                            </tr> {% endcomment %}
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            
+
+            <script>
+
+                //Menu Toggle
+        
+                let toggle = document.querySelector('.toggle');
+                let navigation = document.querySelector('.navigation');
+                let main = document.querySelector('.main');
+        
+                toggle.onclick = function () {
+                    navigation.classList.toggle('active');
+                    main.classList.toggle('active');
+                }
+        
+                // add hovered class in selected item
+                let list = document.querySelectorAll('.navigation li');
+                function activeLink() {
+                    list.forEach((item) =>
+                        item.classList.remove('hovered'));
+                    this.classList.add('hovered')
+                }
+                list.forEach((item) =>
+                    item.addEventListener('mouseover', activeLink));
+            </script>
+            <script>
+                setTimeout(function () {
+                    if ($('#msg').length > 0) {
+                        $('#msg').remove();
+                    }
+                }, 2000)
+            </script>
+
+        </body>
+
+    </html>
+    {% endblock content %}

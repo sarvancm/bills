@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JEBIN FINANCE</title>
+
+        <!-- Favicon icon -->
+        <link
+            rel="icon"
+            href="{% static 'img/jebinlogo.png' %}"
+            type="image/x-icon"
+            />
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+            />
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+        <!-- Data_Table css -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css"
+            />
+    </head>
+
+    <body>
+        
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'calculate' %}">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate %</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billing' %}">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Add Bill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billpayment' %}">
+                            <span class="icon">
+                                <i class="fas fa-cash-register"></i>
+                            </span>
+                            <span class="title"> Bill Payment</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'adddatabase' %}">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'notification' %}">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+            <header>
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                        <span class="nav-link text-light" style="text-transform: uppercase;font-size: 1rem;">
+                            {% if user %}
+                          welcome,{{user.username}}
+                          {% endif %}</span>
+                        </li>
+                    </ul>
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+            </header>
+            <br>
+            <br>
+
+            {% comment %} {% if messages %}
+            {% for message in messages %}
+            <div class="container">
+                <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert" style="text-transform: capitalize;">
+                    {{message}}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %} {% endcomment %}
+            {% block content %} 
+
+            {% endblock %}
+            </div>
+            <script>
+                setTimeout(function () {
+                    if ($('#msg').length > 0) {
+                        $('#msg').remove();
+                    }
+                }, 2000)
+            </script>
+    </body>
+</html>

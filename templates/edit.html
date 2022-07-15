@@ -1,0 +1,368 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="{% static 'img/jebinlogo.png' %}" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    </head>
+
+    <body>
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="far fa-2x fa-arrow-alt-circle-left"></i>
+                            </span>
+                            <span class="title">BACK</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                        <span class="nav-link text-light" style="text-transform: uppercase;font-size: 1rem;">
+                            {% if user %}
+                          welcome,{{user.username}}
+                          {% endif %}</span>
+                        </li>
+                    </ul>
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+
+            </header>
+
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);"> User Details</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <form class="container" id="needs-validation" action="{% url 'edit' document.id %}"
+                        method="POST" >
+                        {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="userid">User ID</label>
+                                        <input type="text" class="form-control"
+                                            id="usreid" 
+                                            placeholder="User ID" value={{document.debtor.user_id}} readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="firstname"> Name</label>
+                                        <input type="text" class="form-control"
+                                            id="firstname"
+                                            placeholder="Name"  value={{document.debtor.full_name}} readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control"
+                                            id="mobile" 
+                                            placeholder="Mobile Number"
+                                            value= {{document.debtor.mobilenumber}} readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-4 col-12">
+                                    <div class="form-group">
+
+                                        <label class="text-inverse"
+                                            for="address">Address : </label>
+                                            <textarea type="text" id="address"
+                                            cols="50" rows="7"
+                                                readonly>{{document.debtor.address}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-10 col-10">
+                                    <div class="form-group">
+
+                                        <br>
+                                        <input type="file" name="input"
+                                            id="input"
+                                            style="display:none;">
+                                        <label for="input">
+                                            <img src="{{document.debtor.profile.url}}"
+                                                class="rounded
+                                                img-thumbnail"
+                                                id="image" width="180px"
+                                                style="cursor: pointer;">
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);">Edit Payment Details</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="total">Total Amount (Rs) : </label>
+                                    <input type="text" class="form-control"
+                                        id="total" name="totalamount"
+                                        placeholder="Total Amount" value={{document.totalamount}}>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="percentage">Percentage : </label>
+                                    <input type="text" class="form-control"
+                                        id="percentage" name = "percentage"
+                                        placeholder="%" value={{document.percentage}}>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="paid">Total Paid Amount (Rs) : </label>
+                                    <input type="text" class="form-control"
+                                        id="paid" name= 'paidamount'
+                                        placeholder="Paid Amount" value={{document.paidamount}} readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <!-- <label class="text-inverse"
+                                        for="firstname"> Name</label>
+                                    <input type="text" class="form-control"
+                                        id="firstname"
+                                        placeholder="Name" required> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="balance">Balance Amount (Rs) :
+                                    </label>
+                                    <input type="text" class="form-control"
+                                        id="balance" name= 'balanceamount'
+                                        placeholder="Balance Amount" value={{document.balanceamount}} readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <!-- <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="pending">Pending Date</label>
+                                    <input type="date" class="form-control"
+                                        id="pending" name= 'pendingdate'
+                                        placeholder="DD/MM/YYYY" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="reason">Reason</label>
+                                    <input type="text" class="form-control"
+                                        id="reason" name= 'reason'
+                                        placeholder="Reason" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="fine">Fine Amount</label>
+                                    <input type="text" class="form-control"
+                                        id="fine" name= 'fineamount'
+                                        placeholder="Fine Amount" required>
+                                </div>
+                            </div>
+                        </div> -->
+<!-- 
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                     <label class="text-inverse"
+                                        for="pending">Pending Date</label>
+                                    <input type="date" class="form-control"
+                                        id="pending"
+                                        placeholder="DD/MM/YYYY" required> -->
+                                <!-- </div>
+                            </div> -->
+                            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group">
+                                    <label class="text-inverse"
+                                        for="ttl"> Total : </label>
+                                    <input type="text" class="form-control"
+                                        id="ttl" name= 'total'
+                                        placeholder="Balance + Fine" required>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="form-group"> -->
+                                    <!-- <label class="text-inverse"
+                                        for="fine">Fine Amount</label>
+                                    <input type="text" class="form-control"
+                                        id="fine"
+                                        placeholder="Fine Amount" required> -->
+                                <!-- </div>
+                            </div>
+                        </div>  -->
+                        <br>
+
+                        
+                        <br>
+
+
+                        <br>
+                        <hr>
+                        <br>
+
+                        <div class="row text-center">
+                            <div class="col-lg-12 col-sm-12 col-12">
+                                <button class="btn btn-info" type="submit">
+                                    UPDATE </button>
+                            </div>
+                        </div>
+                    </form>
+                       
+                        <br>
+                        <br>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <br>
+            <!-- -------------------footer------------------ -->
+
+            <footer class="footer bottom_border">
+                <br>
+                <p class="text-center">Copyright @2022 | Designed by <a
+                        href="https://www.spanglesinfotech.in">SPANGLES
+                        INFOTECH</a></p>
+            </footer>
+
+        </div>
+
+
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+        </script>
+    </body>
+</html>

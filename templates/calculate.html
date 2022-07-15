@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="{% static 'img/jebinlogo.png' %}" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap_4.2.css' %}">
+
+
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- home css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/calculate.css' %}">
+
+    </head>
+
+    <body>
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'calculate' %}">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate %</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billing' %}">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Add Bill</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'billpayment' %}">
+                            <span class="icon">
+                                <i class="fas fa-cash-register"></i>
+                            </span>
+                            <span class="title"> Bill Payment</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'adddatabase' %}">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'searchbase' %}">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'notification' %}">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+                    <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <li class="nav-item">
+                        <span class="nav-link text-light" style="text-transform: uppercase;font-size: 1rem;">
+                            {% if user %}
+                          welcome,{{user.username}}
+                          {% endif %}</span>
+                        </li>
+                    </ul>
+                    <div class="user">
+                        <img src="{% static 'img/aryatwo10.jpg' %}" alt="">
+                    </div>
+                </div>
+
+            </header>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- -------------- CALCULATOR ----------  -->
+
+            <div class="container text-center">
+                <div class="row">
+                    <div class="offset-md-2"></div>
+                    <div class="col-md-8" id="calculator">
+                        <div class="card" id="calculator">
+                            <div class="card-header">
+
+                                <h1>Interest Calculator</h1>
+                            </div>
+                            <div class="card-body">
+                                <form>
+
+                                    <div class="form-group">
+                                        <label class="form-group">Principal</label>
+                                        <input class="form-control" type="text"
+                                            id="principle">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-group">Months</label>
+                                        <input class="form-control"
+                                            type="number"
+                                            id="months">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-group">Rate of
+                                            interest</label>
+                                        <input class="form-control" type="text"
+                                            id="rate">
+                                    </div>
+                                    <button type="button" class="btn
+                                        btn-primary"
+                                        onClick="calculate()">Calculate</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+            
+                            <div class="col-md-12 ">
+                              <h1 id="res">...</h1>
+                            
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="footer bottom_border fixed-bottom">
+                <br>
+                <p class="text-center">Copyright @2022 | Designed by <a
+                        href="https://www.spanglesinfotech.in">SPANGLES
+                        INFOTECH</a></p>
+            </footer>
+
+        </div>
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+        </script>
+        <script>
+            function calculate(){
+                var p = 0;
+                var m = 0;
+                var r = 0;
+                var SI= 0;
+                
+                p = parseInt(document.getElementById("principle").value);
+                m = parseInt(document.getElementById("months").value);
+                r = parseInt(document.getElementById("rate").value);
+                
+                SI = (p*m*r)/(100*12) ;
+                document.getElementById("res").innerHTML=SI;
+                
+            }
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,250 @@
+{% extends "dash.html" %} {% load static %} {% block content %}
+
+
+
+            <!-- -------------- add Database ----------  -->
+            {% if messages %}
+            {% for message in messages %}
+            <div class="container">
+                <div class="alert alert-{{ message.tags }} m-2" id="msg" role="alert" style="text-transform: capitalize;">
+                    {{message}}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8 border
+                        rounded main-section">
+                        <br>
+                        <div class="card mt-12">
+                            <div class="card-header">
+                                <h1 style="text-align: center; color: rgb(80,
+                                    80, 80);">Add User Database</h1>
+                            </div>
+                        </div>
+                        <br>
+                        <form action="{% url 'adddatabase'%}" class="container" id="needs-validation" method='POST' enctype="multipart/form-data"
+                        >
+                        {% csrf_token %}
+                        
+                            <div class="row">
+                                {{form.non_field_errors}}
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="userid">User ID</label>
+                                        <input type="text" class="form-control"
+                                            id="usreid" name='user_id' value="{{user_id}}"
+                                            placeholder="User ID" required readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="firstname">First Name</label>
+                                        <input type="text" class="form-control"
+                                            id="firstname"  name='first_name'
+                                            placeholder="First name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="lastname">Last Name</label>
+                                        <input type="text" class="form-control"
+                                            id="lastname" name='last_name'
+                                            placeholder="Last Name"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="pan">PAN Card Number</label>
+                                        <input type="text" class="form-control"
+                                            id="pan"
+                                            placeholder="PAN Card Number" name='pancard'
+                                            required>
+                                            {{form.pancard.errors}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="aadar">Aadar Card Number</label>
+                                        <input type="text" class="form-control"
+                                            id="aadar" pattern="[0-9]{12}"
+                                            placeholder="Aadar Card Number"  name='aadharnumber'
+                                            required>
+                                            {{form.aadharnumber.errors}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="ration">Ration Card Number</label>
+                                        <input type="text" class="form-control"
+                                            id="ration"
+                                            placeholder="Ration Card Number" name='rationcard'
+                                            required>
+                                            {{form.rationcard.errors}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="mobile">Mobile Number</label>
+                                        <input type="text" class="form-control"
+                                            id="mobile"  maxlength="10"
+                                            minlength="10" pattern="[0-9]{10}"
+                                            placeholder="Mobile Number" name='mobilenumber'
+                                            required>
+                                            {{form.mobilenumber.errors}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="email">E-Mail Address</label>
+                                        <input type="email" class="form-control"
+                                            id="email" name='email'
+                                            placeholder="E-Mail Address"
+                                            required>
+                                            {{form.email.errors}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="place">Place</label>
+                                        <input type="text" class="form-control"
+                                            id="place" name='place'
+                                            placeholder="Place"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-4 col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="address">Address</label>
+                                        <textarea type="text" id="address" name='address'
+                                            cols="30" rows="10"
+                                            placeholder="address" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-8 col-12">
+                                    <div class="form-group">
+
+                                        <br>
+                                        <input type="file" name="input"
+                                            id="input"
+                                            style="display:none;" >
+                                        <label for="input">
+                                            <img src="{% static 'img/img_avatar1.png' %}"
+                                                class="rounded
+                                                img-thumbnail"
+                                                id="output" width="180px"
+                                                style="cursor: pointer;">
+                                            
+                                                <div class="form-group">
+                                                    <label
+                                                        for="exampleFormControlFile1">Profile
+                                                        Image</label>
+                                                    <input type="file"
+                                                        class="form-control-file"  accept="image/*" onchange="loadFile(event)" name='profile'
+                                                        id="exampleFormControlFile1" required>
+                                                </div>
+                                            
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-12
+                                    text-center">
+                                    <button class="btn btn-info" type="submit">
+                                        ADD </button> &nbsp; &nbsp;
+                                    <button class="btn btn-danger" type="reset">
+                                        CANCEL</button>
+                                </div>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <!-- -------------------footer------------------ -->
+
+            <footer class="footer bottom_border">
+                <br>
+                <p class="text-center">Copyright @2022 | Designed by <a
+                        href="https://www.spanglesinfotech.in">SPANGLES
+                        INFOTECH</a></p>
+            </footer>
+
+
+
+        </div>
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+
+
+            var loadFile = function(event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+
+            setTimeout(function () {
+                if ($('#msg').length > 0) {
+                    $('#msg').remove();
+                }
+            }, 2000)
+        </script>
+        <script type="text/javascript" src="{% static 'js/billing.js' %}"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/"></script>
+    </body>
+
+</html>
+{% endblock content %}

@@ -1,0 +1,266 @@
+{% extends "dash.html" %} {% load static %} {% block content %}
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> JEBIN FINANCE </title>
+
+        <!-- Favicon icon -->
+        <link rel="icon" href="img/jebinlogo.png" type="image/x-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/css/bootstrap_4.2.css">
+
+
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+
+        <!-- home css -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/calculate.css">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div class="container1">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <i class="fas fa-2x fa-file-invoice"></i>
+                            </span>
+                            <span class="title">JEBIN FINANCE APP</span>
+                        </a>
+                        <hr>
+                    </li>
+
+                    <li>
+                        <a href="home.html">
+                            <span class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                            <span class="title"> Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calculate.html">
+                            <span class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </span>
+                            <span class="title"> Calculate EMI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Billing.html">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                            <span class="title"> Billing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Add_Database.html">
+                            <span class="icon">
+                                <i class="fas fa-database"></i>
+                            </span>
+                            <span class="title"> Add Database</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Search.html">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <span class="title"> Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notification.html">
+                            <span class="icon">
+                                <i class="fas fa-bell"></i>
+                            </span>
+                            <span class="title"> Notifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Password</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Sign.html">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== Main Page  ==== -->
+
+        <div class="main">
+
+            <header>
+
+
+                <div class="topbar">
+                    <div class="toggle">
+                        <i class="fas fa-xs fa-bars"></i>
+                    </div>
+
+                    <div class="user">
+                        <img src="img/aryatwo10.jpg" alt="">
+                    </div>
+                </div>
+
+            </header> {% endcomment %}
+
+            <br>
+
+            <!-- -------------- CALCULATOR ----------  -->
+
+            <div class="container" id="calculator">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-sm-8 col-8
+                        border rounded main-section">
+                        <h3 class="text-center text-inverse">Enter Loan Data</h3>
+                        <hr>
+                        <form class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="amount">Amount of the loan (Rs)
+                                            : </label>
+                                        <input type="text"
+                                            class="form-control"
+                                            id="amount"
+
+                                            placeholder="Loan Amount">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="apr">Annual Interest (%) :</label>
+                                        <input type="text"
+                                            class="form-control"
+                                            id="apr"
+                                            placeholder="Annual Interest">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="text-inverse"
+                                            for="years">Repayment period (ys) :</label>
+                                        <input type="text"
+                                            class="form-control"
+                                            id="years"
+                                            placeholder="Period (years)">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <hr>
+
+                            <br>
+                            
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button type="button" class="btn btn-info"
+                                        onclick="calculate()">Calculate</button>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <hr>
+
+                            <div class="col-12 cardcrd">
+                                <div>
+                                    Monthly payment :
+                                    <small>Rs. &nbsp; </small> <span
+                                        class="output"
+                                        id="payment"></span>
+                                </div>
+                                <div>
+                                    Total payment :
+                                    <small>Rs. &nbsp; </small> <span
+                                        class="output"
+                                        id="total"></span>
+                                </div>
+                                <div>
+                                    Total interest :
+                                    <small>Rs. &nbsp; </small> <span
+                                        class="output"
+                                        id="totalinterest"></span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+
+            //Menu Toggle
+    
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+    
+            toggle.onclick = function () {
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
+            }
+    
+            // add hovered class in selected item
+            let list = document.querySelectorAll('.navigation li');
+            function activeLink() {
+                list.forEach((item) =>
+                    item.classList.remove('hovered'));
+                this.classList.add('hovered')
+            }
+            list.forEach((item) =>
+                item.addEventListener('mouseover', activeLink));
+        </script>
+
+
+        <script type="text/javascript" src="{% static 'js/calculate.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/calculate_1.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/calculate_2.js' %}"></script>
+{% endblock content %}
+    </body>
+
+</html>
